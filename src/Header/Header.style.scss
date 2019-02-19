@@ -1,0 +1,22 @@
+@import '../Global.scss';
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    width: calc(100%-60px);
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 1px solid $grey-border;
+    h1{
+        
+        font-size: 24px;
+        font-weight: 500;
+        color: $orange-title;
+    }
+}
+
+.select-container{
+    width: 400px;
+}
