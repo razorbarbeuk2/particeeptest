@@ -1,29 +1,31 @@
 import React, { Component } from 'react'
 import Select from 'react-select';
+// import { movies$ as Data } from './Data'
 import './Header.style.scss';
-
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-];
 
 export default class Header extends Component {
   state = {
-    selectedOption: null,
+    filter: [],
+    selectedOption: [],
   }
 
-  handleChange = (selectedOption) => this.setState({ selectedOption });
+  componentDidMount = () => {
+    const { items } = this.props;
+    let filter = [...new Set(items.map(d => d.category))].map(category => {
+      return { value: category.toLowerCase(), label: category }
+    });
+    return this.setState({ filter });
+  }
+
+  handleSelectedOption = (selectedOption) => this.setState({ selectedOption });
 
   render() {
-    const { selectedOption } = this.state;
-    const { arrayFilter } = this.props;
-    console.log('Array: ', arrayFilter);
+    const { selectedOption, filter } = this.state;
     return (
       <header>
         <h1>Particeep Test</h1>
         <div className='select-container' >
-          <Select value={selectedOption} onChange={this.handleChange} options={options} isMulti />
+          <Select value={selectedOption} onChange={this.handleSelectedOption} options={filter} isMulti />
         </div>
       </header>
     )

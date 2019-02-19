@@ -1,45 +1,39 @@
 import React, { Component } from 'react';
 import Header from './Header/Header';
+import Wrapper from './Wrapper/Wrapper';
 import { movies$ as Data } from './Data'
 import './App.scss';
 
-const Wrapper = props => {
+const Loading = () => {
   return (
     <div>
-  
+      <h1>LOADING...</h1>
     </div>
-  );
+  )
 }
 
-class App extends Component {
+export default class App extends Component {
   state = {
-    filter: null
+    loading: true,
+    elements: []
   }
 
   componentDidMount() {
-    Data.then(t => this.insertDataFilter(t)).then(d => this.setState({ filter: d }))
+    Data.then(t => this.setState({ elements: t }, () => this.setState({ loading: false })));
   }
 
-  insertDataFilter = (t) => {
-    let array = [...new Set(t.map(d => d.category))].map(category => {
-      return { value: category.toLowerCase(), label: category }
-    });
-    return array;
+  initElement = () => {
+    const { elements, loading } = this.state;
+    return (loading) ? <Loading /> : <Header items={elements} />;
   }
 
   render() {
-    const { filter } = this.state;
-    
-    
-
+    const { elements } = this.state;
     return (
       <div className="App">
-
-        <Header arrayFilter={filter} />
-        <Wrapper />
+        {this.initElement()}
+        <Wrapper items={elements} />
       </div>
     );
   }
 }
-
-export default App;
