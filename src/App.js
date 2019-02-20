@@ -59,10 +59,10 @@ export default class App extends Component {
   };
 
   //Delete Element
-  deleteItem = id => {
+  deleteItem = index => {
     const { elements } = this.state;
-    elements.splice(id - 1, 1);
-    return this.setState({ elements }, () => new Promise((resolve, reject) => this.mapFilter())).then(this.updatePage());
+    elements.splice(index, 1);
+    return this.setState({ elements }, () => new Promise((resolve, reject) => resolve(this.mapFilter())).then(this.updatePage()));
   };
 
   //Initialisation du nombre d'element par page
@@ -86,7 +86,7 @@ export default class App extends Component {
 
   //Fonction générique pour update la page
   updatePage = () =>
-    new Promise((resolve, reject) => this.mapFilterItem())
+    new Promise((resolve, reject) => resolve(this.mapFilterItem()))
       .then(this.mapFilterNumber())
       .then(t => this.initElementPerPage(t));
 
@@ -124,7 +124,7 @@ export default class App extends Component {
               <Card
                 item={t}
                 key={index}
-                deleteItem={() => this.deleteItem(t.id)}
+                deleteItem={() => this.deleteItem(index)}
               />
             ))}
           </div>

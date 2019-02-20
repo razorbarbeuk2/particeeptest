@@ -23,11 +23,13 @@ export default class Header extends Component {
             value={selectedNumber}
             onChange={changeNumber}
             options={optionNumber}
+            placeholder="Sélection du nombre d'élément"
           />
           <Select
             value={selectedFilter}
             onChange={changeFilter}
             options={optionFilter}
+            placeholder="Sélection des filtres"
             isMulti
           />
         </div>
