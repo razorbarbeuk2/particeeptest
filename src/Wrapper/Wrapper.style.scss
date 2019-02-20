@@ -5,13 +5,15 @@
     grid-template-rows: repeat(1, auto); 
     grid-column-gap: 15px;
     grid-row-gap: 15px;
-    background: #F0F0F0;
-    align-items: start;
-    height: calc(100vh - 100px);
+    & > * {
+        padding: 10px;
+        flex: 1 100%;
+    }
 
     @media (min-width: 576px) {
         grid-template-columns: repeat(1, auto);
         grid-template-rows: repeat(1, auto); 
+        grid-row-gap: 20px;
     }
 
     @media (min-width: 768px) {

@@ -32,7 +32,9 @@ export default class App extends Component {
     return (
       <div className="App">
         {this.initElement()}
-        <Wrapper items={elements} />
+        <div className="wrapper" >
+          {elements.map((t, index) => <Card item={t} key={index} />)}
+        </div>
       </div>
     );
   }
