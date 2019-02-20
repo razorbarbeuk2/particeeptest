@@ -1,11 +1,18 @@
-import React, { Component } from 'react'
+import React from 'react';
+import Pagination from "react-js-pagination";
 
-export default class Footer extends Component {
-  render() {
-    return (
-      <div>
-        
-      </div>
-    )
-  }
+const Footer = props => {
+  const { handlePageChange, activePage, numberPerPage, nbrElement } = props
+  return (
+    <div className="footer">
+      <Pagination 
+          activePage={activePage}
+          itemsCountPerPage={numberPerPage}
+          totalItemsCount={nbrElement}
+          onChange={handlePageChange}
+      />
+    </div>
+  )
 }
+
+export default Footer;
