@@ -11,7 +11,6 @@ export default class Card extends Component {
       dislikes: props.item.dislikes
     }
   }
-  
 
   typeCategory = () => {
     const { item } = this.props;

@@ -41,21 +41,16 @@ export default class App extends Component {
     return this.setState({ filter, });
   }
 
-  changeFilter = d => this.setState({ selectedOption: d }, () => {
-    return new Promise((res, rej) => res(this.mapFilterItem())).then(t => this.initElementPerPage(t));
-  })
-
   mapFilterItem = () => {
     const { elements ,selectedOption } = this.state;
     return (selectedOption.length) ? elements.filter(d => selectedOption.find(f => f.label === d.category)) : elements;
   }
 
-  deleteItem = index => {
+  deleteItem = id => {
     const { elements } = this.state;
-    elements.splice(index, 1);
-    return this.setState({ elements }, 
-      () => this.setState({ filter: this.mapFilter() })
-    )
+    elements.splice((id - 1), 1);
+    return this.setState({ elements }, () => new Promise((resolve, reject) => resolve(this.mapFilter()))
+      .then(() => this.updatePage()))
   }
 
   initElementPerPage = elements => {
@@ -67,10 +62,11 @@ export default class App extends Component {
     return this.setState({ currentElement, });
   }
 
-  handlePageChange = page => this.setState({ activePage: page }, 
-    () => new Promise((resolve, reject) => resolve(this.mapFilterItem()))
-      .then(t => this.initElementPerPage(t))
-  );
+  changeFilter = option => this.setState({ selectedOption: [...option] }, () => this.updatePage());
+
+  handlePageChange = page => this.setState({ activePage: page }, () => this.updatePage());
+
+  updatePage = () => new Promise((resolve, reject) => resolve(this.mapFilterItem())).then(t => this.initElementPerPage(t))
 
   nbrElement = elements => this.setState({ nbrElement: elements.length })
 
@@ -86,7 +82,7 @@ export default class App extends Component {
         <div className="App">
           <Header filter={filter} changeFilter={d => this.changeFilter(d)} options={selectedOption} />
           <div className="wrapper" >
-            {currentElement.map((t, index) => <Card item={t} key={index} deleteItem={() => this.deleteItem(index)} />)}
+            {currentElement.map((t, index) => <Card item={t} key={index} deleteItem={() => this.deleteItem(t.id)} />)}
           </div>
           <Footer activePage={activePage} nbrElement={nbrElement} handlePageChange={page => this.handlePageChange(page)} numberPerPage={elementPerPage} />
         </div>
