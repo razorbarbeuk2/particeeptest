@@ -1,81 +1,79 @@
-.card{
-    background-color: #FFFFFF;
-    border-radius: 8px;
-    &__content{
-        display: flex;
-        height: 100%;
-        flex-direction: column;
-        align-items: center; 
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  &__content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__title {
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #4cdaed;
+  }
+  &__category {
+    padding: 5px 10px 5px 10px;
+    border-radius: 30px;
+    background: red;
+    font-weight: 400;
+    color: white;
+
+    &-comedy {
+      background: $color-comedy;
     }
-    &__title{
-        font-family: 'Rubik', sans-serif;
-        font-weight: 500;
-        font-size: 20px;
-        color: #4CDAED;
+    &-animation {
+      background: $color-animation;
     }
-    &__category{
-        padding: 5px 10px 5px 10px;
-        border-radius: 30px;
-        background: red;
-        font-weight: 400;
-        color: white;
-        
-        
-        &-comedy{
-            background: $color-comedy;
-        }
-        &-animation{
-            background: $color-animation;
-        }
-        &-drame{
-            background: $color-drame;
-        }
-        &-thriller{
-            background: $color-thriller;
-        }
-        &-none{
-            background: blueviolet;
-        }
+    &-drame {
+      background: $color-drame;
     }
-    ul li{
-        display: inline-block;
-        margin-right: 15px;
+    &-thriller {
+      background: $color-thriller;
     }
-    &__button{
-        
-        &-content{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            width: 80%;
-            height: 50%;   
-        }
-        &-likes, &-dislikes, &-trash{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: red;
-            
-            cursor: pointer;
-        }
-        &-likes{
-            background: #78F45B;
-        }
-        &-dislikes{
-            background: #F4675B;
-        }
-        &-trash{
-            background: #B9B9B9;
-        }
-        &-likes-counter, &-dislikes-counter{
-            font-size: 18px;
-            color: grey;
-        }
+    &-none {
+      background: blueviolet;
     }
+  }
+  ul li {
+    display: inline-block;
+    margin-right: 15px;
+  }
+  &__button {
+    &-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 80%;
+      height: 50%;
+    }
+    &-likes,
+    &-dislikes,
+    &-trash {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: red;
+
+      cursor: pointer;
+    }
+    &-likes {
+      background: #78f45b;
+    }
+    &-dislikes {
+      background: #f4675b;
+    }
+    &-trash {
+      background: #b9b9b9;
+    }
+    &-likes-counter,
+    &-dislikes-counter {
+      font-size: 18px;
+      color: grey;
+    }
+  }
 }
-
-
-
