@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header/Header';
-import Wrapper from './Wrapper/Wrapper';
+import Card from './Card/Card';
 import { movies$ as Data } from './Data'
 import './App.scss';
 
@@ -22,9 +22,20 @@ export default class App extends Component {
     Data.then(t => this.setState({ elements: t }, () => this.setState({ loading: false })));
   }
 
+  shouldComponentUpdate = (nextProps, nextState) => {
+    if(this.state !== nextState)
+      return true;
+  }
+
   initElement = () => {
     const { elements, loading } = this.state;
     return (loading) ? <Loading /> : <Header items={elements} />;
+  }
+
+  deleteItem = index => {
+    const { elements } = this.state;
+    elements.splice(1, index);
+    this.setState({ elements, })
   }
 
   render() {
@@ -33,7 +44,7 @@ export default class App extends Component {
       <div className="App">
         {this.initElement()}
         <div className="wrapper" >
-          {elements.map((t, index) => <Card item={t} key={index} />)}
+          {elements.map((t, index) => <Card item={t} key={index} deleteItem={() => this.deleteItem(index)} />)}
         </div>
       </div>
     );

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Select from 'react-select';
 // import { movies$ as Data } from './Data'
-import './Header.style.scss';
 
 export default class Header extends Component {
   state = {

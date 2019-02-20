@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Button from './Button';
 import ButtonType from './ButtonType';
-import './Card.style.scss';
 
 export default class Card extends Component {
   constructor(props) {
@@ -41,7 +40,7 @@ export default class Card extends Component {
   }
 
   render() {
-    const { item, garbageItem } = this.props;
+    const { item, deleteItem } = this.props;
     const { likes, dislikes } = this.state;
     return (
         <div className="card">
@@ -52,7 +51,7 @@ export default class Card extends Component {
                 <Button isLike count={likes} onClick={this.handlelikes}/>
                 <Button isDislike count={dislikes} onClick={this.handledislikes}/>
               </div>
-              <div className="card__button-trash" onClick={garbageItem}>
+              <div className="card__button-trash" onClick={deleteItem}>
                   <ButtonType trash />
               </div>
           </div>

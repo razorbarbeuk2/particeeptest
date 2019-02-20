@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ButtonType from './ButtonType';
-import './Card.style.scss';
 
 export default class Button extends Component {
 
